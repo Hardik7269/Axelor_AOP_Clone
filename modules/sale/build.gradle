@@ -1,0 +1,9 @@
+plugins {
+  id 'com.axelor.app'
+}
+
+axelor {
+  title "AOP Sale"
+  description "AOP TRAINING : Sales Module"
+}
+
