@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models
+    xmlns="http://axelor.com/xml/ns/domain-models"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+
+    <module name="axelor-sale" package="com.axelor.sale.db" />
+
+    <entity name="SaleOrderLine">
+        <string name="description" title="Description" required="true" namecolumn="true"></string>
+        <decimal name="quantity" title="Quantity" required="true" min="0"></decimal>
+        <decimal name="exTaxTotal" title="Total without tax" required="true" min="0"></decimal>
+        <decimal name="taxRate" title="Tax rate" required="true" default="0" min="0"></decimal>
+        <decimal name="unitPriceUntaxed" title="Unit price untaxed" required="true" min="0"></decimal>
+        <many-to-one ref="Product" name="product" title="Product" required="true"></many-to-one>
+        <many-to-one ref="SaleOrder" name="saleOrder" title="Sale order" required="true"></many-to-one>
+
+
+    </entity>
+
+</domain-models>

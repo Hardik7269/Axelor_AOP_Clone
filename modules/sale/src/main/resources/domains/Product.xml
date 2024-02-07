@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+
+	<module package="com.axelor.sale.db" name="sale" />
+	<entity name="Product">
+		<string name="name" title="Name" required="true" unique="true"></string>
+		<string name="code" title="Code" required="true" unique="true"></string>
+		<string name="fullName" title="Full name" namecolumn="true" search="name,code">
+			<![CDATA[
+				if(name == null && code == null){
+					return  "";
+				}
+				return "["+code+"]"+name;
+			]]>
+			
+		</string>
+		
+		<decimal name="unitPriceUntaxed" title="Unit Price untaxed" required="true" min="0"></decimal>
+		<many-to-one ref="com.axelor.sale.db.ProductCategory" name="productCategory" title="Product Category" required="true"></many-to-one>
+		<binary name="image" title="Image"></binary>
+		
+	</entity>
+
+
+</domain-models>
