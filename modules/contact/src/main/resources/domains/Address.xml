@@ -5,11 +5,11 @@
   https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
 
 	<module package="com.axelor.contact.db" name="contact" />
-	<entity name="Address">
-		<string name="numberAndStreet" required="true" title="N* / Street" ></string>
-		<string name="zip" required="true" ></string>
-		<string name="city" required="true" ></string>
-		<many-to-one ref="com.axelor.contact.db.Country" name="country"></many-to-one>
+	<entity name="Address" >
+		<string name="numberAndStreet" required="true" title="N* / Street"/>
+		<string name="zip" required="true" />
+		<string name="city" required="true" />
+		<many-to-one ref="com.axelor.contact.db.Country" name="country"/>
 		<string name="fullName" namecolumn="true" search="zip,numberAndStreet,city">
 			<![CDATA[
 			if(zip == null || numberAndStreet == null || city == null ){
@@ -18,6 +18,8 @@
 		return "zip: " + zip + " Number & Street: " + numberAndStreet + " City: " + city;
 			]]>
 		</string>
+		
+		
 	</entity>
 
 
