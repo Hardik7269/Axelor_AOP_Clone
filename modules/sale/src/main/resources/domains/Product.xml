@@ -21,8 +21,7 @@
 		<decimal name="unitPriceUntaxed" title="Unit Price untaxed" required="true" min="0"></decimal>
 		<many-to-one ref="com.axelor.sale.db.ProductCategory" name="productCategory" title="Product Category" required="true"></many-to-one>
 		<binary name="image" title="Image"></binary>
-		
+	
 	</entity>
-
 
 </domain-models>
