@@ -10,7 +10,7 @@
 		<string name="code" title="Code" required="true" unique="true"/>
 		<string name="fullName" title="Full name" namecolumn="true" search="name,code">
 			<![CDATA[
-				if(name == null && code == null){
+				if(name == null || code == null){
 					return  "";
 				}
 				return "["+code+"]"+name;

@@ -20,7 +20,7 @@
 		<enum name="statusSelect" title="Status" ref="SaleOrderStatusSelect" required="true"/>
 		<decimal name="inTaxTotal" title="Total with tax" default="0"/>
 		<many-to-one ref="com.axelor.contact.db.Contact" name="customer" title="Customer" required="true"/>
-		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Slae order lines"/>
+		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Sale order lines"/>
 	</entity>
 	
 	<enum name="SaleOrderStatusSelect">
