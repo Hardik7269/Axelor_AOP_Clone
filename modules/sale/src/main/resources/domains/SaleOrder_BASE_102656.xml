@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+
+	<module package="com.axelor.sale.db" name="sale" />
+	<entity name="SaleOrder">
+		<string name="saleOrderSeq" title="Sequence" namecolumn="true" search="saleOrderSeq">
+			<![CDATA[
+			if(saleOrderSeq != null){
+				return saleOrderSeq;
+			}
+			String s = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSS"));
+			return "SO " + s;
+			]]>
+		</string>
+		<datetime name="quotationDateT" title="Quotation date" />
+		<datetime name="confirmationDate" title="Confirmation date" />
+		<enum name="statusSelect" title="Status" ref="SaleOrderStatusSelect" required="true"/>
+		<decimal name="inTaxTotal" title="Total with tax" default="0"/>
+		<many-to-one ref="com.axelor.contact.db.Contact" name="customer" title="Customer" required="true"/>
+		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Slae order lines"/>
+	</entity>
+	
+	<enum name="SaleOrderStatusSelect">
+		<item name="DRAFT" value="draft"/>
+		<item name="QUOTATION" value="quotation"/>
+		<item name="CONFIRMED" value="confirmed"/>
+		<item name="CANCELLED" value="cancelled"/>
+	</enum>
+
+
+</domain-models>
