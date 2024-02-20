@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+
+	<grid model="com.axelor.sale.db.SaleOrder" title="Sale order lines" name="sale-order-grid" canNew="true">
+		<field name="saleOrderSeq"/>	
+		<field name="quotationDateT"/>	
+		<field name="confirmationDate"/>	
+		<field name="statusSelect"/>		
+		<field name="inTaxTotal"/>	
+		<field name="customer"/>	
+	</grid>
+	<grid model="com.axelor.sale.db.SaleOrder" title="Sale order lines" name="quotation-sale-order-grid" canEdit="false" canNew="false">
+		<field name="saleOrderSeq"/>	
+		<field name="quotationDateT"/>
+		<field name="saleOrder.confirmationDate"/>
+		<field name="statusSelect" domain="true" />
+		<field name="inTaxTotal"/>
+		<field name="customer"/>
+	</grid>
+	
+	
+	<form model="com.axelor.sale.db.SaleOrder" title="Sale Order" name="sale-order-form" width="large">
+		<panel>
+			<field name="statusSelect" selection="SaleOrderStatusSelect" widget="NavSelect" colSpan="12"/>
+			<field name="saleOrderSeq" readonly="true"/>
+			<field name="customer"></field>
+		
+			<panel-related field="saleOrderLineList" colSpan="12" grid-view="sale-order-line-grid" form-view="sale-order-line-form" readonlyIf="statusSelect == 'CONFIRMED'"/>
+		</panel>
+		<panel sidebar="true">
+			<button onClick="" name="finilizeQuotation" title="Finalize quotation" showIf="statusSelect == 'DRAFT'"/>
+			<button onClick="" name="confirmOrder" title="Confirm order" showIf="statusSelect == 'CONFIRMED'"/>
+			<button onClick="" name="cancleOrder" title="Cancel order" css="btn-danger" showIf="statusSelect !== 'CANCELLED'"/>
+		</panel>
+		<panel sidebar="true" title="Dates" collapseIf="true" readonly="true">
+			<field name="quotationDateT"/>			
+			<field name="confirmationDate"/>
+			
+		</panel>
+		<panel sidebar="true" title="Prices" collapseIf="true" readonly="true">
+			<field name="inTaxTotal"/>					
+		</panel>
+	</form>
+	
+</object-views>

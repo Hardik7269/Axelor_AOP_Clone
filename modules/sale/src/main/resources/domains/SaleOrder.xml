@@ -12,7 +12,7 @@
 				return saleOrderSeq;
 			}
 			String s = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSS"));
-			return "SO " + s;
+			return "SO" + s;
 			]]>
 		</string>
 		<datetime name="quotationDateT" title="Quotation date" />
@@ -20,7 +20,7 @@
 		<enum name="statusSelect" title="Status" ref="SaleOrderStatusSelect" required="true"/>
 		<decimal name="inTaxTotal" title="Total with tax" default="0"/>
 		<many-to-one ref="com.axelor.contact.db.Contact" name="customer" title="Customer" required="true"/>
-		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Sale order lines"/>
+		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Slae order lines" mappedBy="saleOrder"/>
 	</entity>
 	
 	<enum name="SaleOrderStatusSelect">

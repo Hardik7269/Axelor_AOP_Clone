@@ -5,31 +5,34 @@
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
   
  <menuitem title="Sale" name="sale-root" icon="fa-line-chart" icon-background="yellow"/>
-     <menuitem title="All sale orders" name="sale-root-all-sale-order" parent="sale-root"  action="action.sale.view.all.sale.order"/>
+     <menuitem title="All sale orders" name="sale-root-all-sale-order" parent="sale-root"  action="action.sale.view.all.sale.order" order="1"/>
      		<action-view name="action.sale.view.all.sale.order" title="SaleOrder" model="com.axelor.sale.db.SaleOrder">
-						<view type="form" name="sale-order-form" />
 						<view type="grid" name="sale-order-grid" />
+						<view type="form" name="sale-order-form" />
+			</action-view>
+						
+						
+						
+     <menuitem title="Quotation sale orders" name="sale-root-quotation-sale-orders" parent="sale-root" action="action.sale.view.quotation.sale.orders" tag-count="true" tag-style="important" order="2"/>
+     		<action-view name="action.sale.view.quotation.sale.orders" title="Quotation sale orders" model="com.axelor.sale.db.SaleOrder">
+						<view type="grid" name="sale-order-grid" />
+						<view type="form" name="sale-order-form" />
+						<domain>self.statusSelect='quotation'</domain>					
 			</action-view>
 			
-     <menuitem title="Quotation sale orders" name="sale-root-quotation-sale-orders" parent="sale-root" action="action.sale.view.quotation.sale.orders"/>
-     		<action-view name="action.sale.view.quotation.sale.orders" title="Quotation sale orders">
-						<view type="grid" name="quotation-sale-order-grid" />
-						<view type="form" name="quotation-sale-order-form" />
-						<domain>self.selectStatus="quotation"</domain>
-			</action-view>
 			
-			
-     <menuitem title="Configuration" name="sale-root-configuration" parent="sale-root"  icon="fa-gear"/>
+     <menuitem title="Configuration" name="sale-root-configuration" parent="sale-root"  icon="fa-gear" order="3"/>
              <menuitem title="Product categories" name="sale-root-configuration-product-categories" parent="sale-root-configuration" action="action.sale.configuration.view.product.categories"/>
              		<action-view name="action.sale.configuration.view.product.categories" title="Product Category" model="com.axelor.sale.db.ProductCategory">
 						<view type="grid" name="product-category-grid" />
 						<view type="form" name="product-category-form" />
 					</action-view>
+						
+						
 					
             <menuitem title="Product categories tree" name="sale-root-configuration-product-categories-tree" parent="sale-root-configuration"  action="action.sale.configuration.view.product.categories.tree"/>
-            		<action-view name="action.sale.configuration.view.product.categories.tree" title="Product category tree" >
-						<view type="grid" name="" />
-						<view type="form" name="" />
+            		<action-view name="action.sale.configuration.view.product.categories.tree" title="Product category tree" model="com.axelor.sale.db.ProductCategory">
+						<view type="tree" name="product-category-tree" />
 					</action-view>
             
             <menuitem title="Products" name="sale-root-configuration-products" parent="sale-root-configuration" action="action.sale.configuration.view.products"/>
@@ -38,14 +41,21 @@
 						<view type="form" name="product-form" />
 					</action-view>
 					
-       <menuitem name="sale-root-data" title="Data" icon="fa-list" parent="sale-root"/>
+       <menuitem name="sale-root-data" title="Data" icon="fa-list" parent="sale-root" order=""/>
                <menuitem title="Sale order lines" name="sale-root-data-sale-order-line" parent="sale-root-data" action="action.sale.data.view.sale.order.line"/>
                		<action-view name="action.sale.data.view.sale.order.line" title="Sale order lines" model="com.axelor.sale.db.SaleOrderLine">
-						<view type="grid" name="sale-order-line-grid" />
-						<view type="form" name="sale-order-line-form" />
+						<view type="grid" name="sale-order-line-grid-form-menu" />
+						<view type="form" name="sale-order-line-form-form-menu"/>
 						<view-param name="search-filters" value="searchFilter"/>
 						
 					</action-view>
+					
+					<action-view name="action.sale.data.view.sale.order.line.contact" title="Sale order lines" model="com.axelor.sale.db.SaleOrderLine">
+						<view type="grid" name="sale-order-line-grid-form-menu" />
+						<domain>self.saleOrder.customer.fullName = :fullName</domain>
+						<context name="fullName" expr="fullName"/>
+					</action-view>
+										
 					<search-filters name="searchFilter" model="com.axelor.sale.db.SaleOrderLine" title="search-filter">
 							<filter title="Draft lines">
 								<domain>self.saleOrder.statusSelect = "draft"</domain>	
@@ -60,5 +70,6 @@
 								<domain>self.saleOrder.satausSelect="cancelled"</domain>
 							</filter>				
 					</search-filters>
+
 				
-  </object-views>
+</object-views>

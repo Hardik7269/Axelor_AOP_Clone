@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+
+	<grid model="com.axelor.contact.db.Event" title="Events" name="event-grid">
+		<field name="title"/>
+		<field name="typeSelect"/>
+		<field name="startDateT"/>
+		<field name="endDateT"/>
+		<field name="statusSelect" widget="SingleSelect"/>
+	</grid>
+
+<form model="com.axelor.contact.db.Event" title="Event" name="event-form" width="large">
+	<panel title="mainPanel" >	
+		<field name="title" colSpan="4"/>
+		<field name="statusSelect" colSpan="4" widget="SingleSelect"/>
+		<field name="typeSelect" colSpan="4"/>
+		<field name="plannedFor" colSpan="4"/>
+		<field name="startDateT" colSpan="4"/>
+		<field name="endDateT" colSpan="4"/>
+		<panel>
+			<field name="notes" width="1415px" />
+		</panel>
+	</panel>
+	
+</form>
+
+<kanban columnBy="statusSelect" model="com.axelor.contact.db.Event" sequenceBy="typeSelect" title="Events" name="event-kanban">
+
+	<field name="title"/>
+	<field name="typeSelect"/>
+	<field name="plannedFor.fullName"/>
+	<field name="plannedFor.email"/>
+	<field name="plannedFor.phone"/>
+	<field name="startDateT"/>
+	<field name="endDateT"/>
+	
+	<template>
+		<![CDATA[
+		<h4>{{title}}</h4></br>
+
+              <div class="card-body">
+                  <span class="label {{typeSelect == 1 ? 'label-success' : typeSelect == 2 ? 'label-warning' : 'label-secondary'}}">
+                  {{typeSelect == 0 ? 'Other' : typeSelect == 1 ? 'Phone' : 'Meeting'}}</span>
+
+                  <h5>{{plannedFor.fullName}}</h5>
+                  <i class='fa fa-at'></i> <span style="color:blue">{{plannedFor.email}}</span></br>
+                  <i class='fa fa-phone'></i> <span style="color:blue">{{plannedFor.phone}}</span>
+
+              <div class="card-footer"></br>
+                <span>{{startDate|date:'YYYY-MM-DD HH:mm:ss'}}</span></br>
+                <span>{{endDate|date:'YYYY-MM-DD HH:mm:ss'}}</span>
+              </div>
+		]]>
+	</template>
+</kanban>
+
+<calendar name="event-calendar" model="com.axelor.contact.db.Event" eventStart="startDateT" title="Events" colorBy="typeSelect" eventLength="1">
+	<field name="typeSelect"/>
+</calendar>
+
+
+<selection name="contact.event.status.select">
+	<option value="0" color="grey">Draft</option>
+	<option value="1" color="purple">Proposed</option>
+	<option value="2" color="indigo">Accepted</option>
+	<option value="3" color="green">Finished</option>
+	<option value="4" color="amber">Missing contact</option>
+	<option value="5" color="brown">Postponed</option>
+	<option value="6" color="red">Refused</option>
+	<option value="7" color="bluegrey">Cancelled</option>
+</selection>
+
+<selection name="contact.event.type.select">
+	<option value="0">Other</option>
+	<option value="1" >Phone call</option>
+	<option value="2" >Meeting</option>
+</selection>
+
+</object-views>

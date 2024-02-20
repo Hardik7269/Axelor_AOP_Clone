@@ -13,10 +13,8 @@
         <decimal name="exTaxTotal" title="Total without tax" required="true" min="0"/>
         <decimal name="taxRate" title="Tax rate" required="true" default="0" min="0"/>
         <decimal name="unitPriceUntaxed" title="Unit price untaxed" required="true" min="0"/>
-        <many-to-one ref="Product" name="product" title="Product" required="true"/>
-        <many-to-one ref="SaleOrder" name="saleOrder" title="Sale order" required="true"/>
-
-
+        <many-to-one ref="com.axelor.sale.db.Product" name="product" title="Product" required="true"/>
+        <many-to-one ref="com.axelor.sale.db.SaleOrder" name="saleOrder" title="Sale order" required="true"/>
     </entity>
 
 </domain-models>
