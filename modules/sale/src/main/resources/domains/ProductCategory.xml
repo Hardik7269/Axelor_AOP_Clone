@@ -16,10 +16,10 @@
 				}
 				return "["+code+"]"+name;
 		]]>
-	</string>	
-		<integer name="iconSelect" title="Icon" selection=""/>
-			
-	
+		</string>
+		<integer name="iconSelect" title="Icon" selection="product.category.select"/>
+
+
 	</entity>
 
 </domain-models>

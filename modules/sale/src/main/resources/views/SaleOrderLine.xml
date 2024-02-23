@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+
+	<grid model="com.axelor.sale.db.SaleOrderLine" title="Sale order lines" name="sale-order-line-grid" canNew="true">
+		<field name="description"/>	
+		<field name="quantity"/>	
+		<field name="taxRate"/>	
+		<field name="exTaxTotal"/>		
+	</grid>
+	
+	<form model="com.axelor.sale.db.SaleOrderLine" title="Sale order line" name="sale-order-line-form" width="large" >
+		<panel title="mainPanel" >	
+			<help css="alert-info" showIf="product == null">
+			
+			Please fill the product first
+			</help>	
+			
+			<field name="product" colSpan="6"/>
+			<field name="description" colSpan="6" readonlyIf="product == null"/>
+			
+			<field name="unitPriceUntaxed" colSpan="6" readonlyIf="product == null" domain="self.unitPriceUntaxed > '0'"/>
+			<field name="quantity"/>	
+			
+			<field name="taxRate"/>
+			<field name="exTaxTotal" readonly="true"/>
+		</panel>
+	</form>
+
+	<grid model="com.axelor.sale.db.SaleOrderLine" name="sale-order-line-grid-form-menu" editable="false" edit-icon="false" title="Sale order lines" groupBy="product.productCategoryList">
+		<field name="product"/>
+		<field name="description"/>
+		<field name="unitPriceUntaxed"/>
+		<field name="quantity" aggregate="sum"/>
+		<field name="taxRate"/>
+		<field name="exTaxTotal"/>
+		<field name="saleOrder"/>
+		<field name="saleOrder.statusSelect"/>
+		<field name="saleOrder.customer"/>
+		<field name="product.productCategoryList"/>
+	</grid>
+	
+	<form model="com.axelor.sale.db.SaleOrderLine" title="Sale order line" name="sale-order-line-form-form-menu" canEdit="false" canNew="false" readonlyIf="true">
+		<panel title="mainPanel">
+			<field name="product" colSpan="6"/>
+			<field name="description" colSpan="6"/>
+			
+			<field name="unitPriceUntaxed" colSpan="6">
+				
+			</field>
+			<field name="quantity" colSpan="6"/>
+			
+			<field name="taxRate" colSpan="6"/>
+			<field name="exTaxTotal" colSpan="6"/>
+		</panel>
+		<panel sidebar="true">
+			<field name="saleOrder"/>
+			<field name="saleOrder.customer"/>
+			<field name="product"/>
+		</panel>
+	</form>
+
+</object-views>
