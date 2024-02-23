@@ -5,8 +5,8 @@
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
 	
   <selection name="product.category.select" >
-    <option value="0" icon="img/productCategory/ServiceImg.png">Prestation</option>
-    <option value="1" icon="img/productCategory/StorableImg.png">Product</option>
+    <option value="0" icon="img/productCategory/service.png">Prestation</option>
+    <option value="1" icon="img/productCategory/storable.png">Product</option>
   </selection>
 
 </object-views>

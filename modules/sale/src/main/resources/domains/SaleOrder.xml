@@ -5,6 +5,12 @@
   https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
 
 	<module package="com.axelor.sale.db" name="sale" />
+	<enum name="SaleOrderStatusSelect">
+		<item name="DRAFT" value="draft"/>
+		<item name="QUOTATION" value="quotation"/>
+		<item name="CONFIRMED" value="confirmed"/>
+		<item name="CANCELLED" value="cancelled"/>
+	</enum>
 	<entity name="SaleOrder">
 		<string name="saleOrderSeq" title="Sequence" namecolumn="true" search="saleOrderSeq">
 			<![CDATA[
@@ -16,19 +22,14 @@
 			]]>
 		</string>
 		<datetime name="quotationDateT" title="Quotation date" />
-		<datetime name="confirmationDate" title="Confirmation date" />
-		<enum name="statusSelect" title="Status" ref="SaleOrderStatusSelect" required="true"/>
+		<datetime name="confirmationDateT" title="Confirmation date" />
+		<enum name="statusSelect" title="Status" ref="SaleOrderStatusSelect" required="true" readonly="true"/>
 		<decimal name="inTaxTotal" title="Total with tax" default="0"/>
 		<many-to-one ref="com.axelor.contact.db.Contact" name="customer" title="Customer" required="true"/>
-		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Slae order lines" mappedBy="saleOrder"/>
+		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Sale order lines" mappedBy="saleOrder"/>
 	</entity>
 	
-	<enum name="SaleOrderStatusSelect">
-		<item name="DRAFT" value="draft"/>
-		<item name="QUOTATION" value="quotation"/>
-		<item name="CONFIRMED" value="confirmed"/>
-		<item name="CANCELLED" value="cancelled"/>
-	</enum>
+	
 
 
 </domain-models>
