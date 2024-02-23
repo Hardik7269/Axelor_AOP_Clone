@@ -16,7 +16,7 @@
 			]]>
 		</string>
 		<datetime name="quotationDateT" title="Quotation date" />
-		<datetime name="confirmationDate" title="Confirmation date" />
+		<datetime name="confirmationDateT" title="Confirmation date" />
 		<enum name="statusSelect" title="Status" ref="SaleOrderStatusSelect" required="true"/>
 		<decimal name="inTaxTotal" title="Total with tax" default="0"/>
 		<many-to-one ref="com.axelor.contact.db.Contact" name="customer" title="Customer" required="true"/>

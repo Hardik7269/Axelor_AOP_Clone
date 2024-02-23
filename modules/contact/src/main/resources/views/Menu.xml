@@ -6,17 +6,17 @@
 
   
  <menuitem title="Contact" name="contact-root" icon="fa-user" icon-background="green"/>  
-      <menuitem title="Contacts" name="contact-root-contacts" parent="contact-root" action="action.contacts.view.contact.contacts" />
+      <menuitem title="Contacts" name="contact-root-contacts" parent="contact-root" action="action.contacts.view.cards" />
       
-	         <action-view name="action.contacts.view.contact.contacts" title="Contacts" model="com.axelor.contact.db.Contact">
+	         <action-view name="action.contacts.view.cards" title="Contacts" model="com.axelor.contact.db.Contact">
 	                  	<view type="cards" name="contact-card"/>
-	                  	<view type="form" name="contact-grid"/>
+	                  	<view type="grid" name="contact-grid"/>
 	                  	<view type="form" name="contact-form"/>
 	                  	<view-param name="showArchived" value="true"/>
 	         </action-view>
 
-      <menuitem title="Events" name="contact-root-events" parent="contact-root" action="action.contact.view.event"/>
-		      <action-view name="action.contact.view.event" title="Events" model="com.axelor.contact.db.Event" >
+      <menuitem title="Events" name="contact-root-events" parent="contact-root" action="action.contact.view.calendar"/>
+		      <action-view name="action.contact.view.calendar" title="Events" model="com.axelor.contact.db.Event" >
 				      	<view type="calendar" name="event-calendar" />
 				      	<view type="kanban" name="event-kanban" />
 				      	<view type="grid" name="event-grid"/>

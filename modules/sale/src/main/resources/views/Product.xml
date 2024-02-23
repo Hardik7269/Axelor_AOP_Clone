@@ -10,21 +10,21 @@
 		<field name="code"/>
 		<field name="name"/>
 		<field name="unitPriceUntaxed"/>
-		<field name="productCategoryList"/>		
+		<field name="productCategory"/>		
 		<field name="image"/>
 		
 	</grid>
 
 <form model="com.axelor.sale.db.Product" title="Product" name="product-form" width="large">
-	<panel title="mainPanel">	
-		<panel>
+	<panel title="mainPanel" name="productPanel">	
+		<panel name="productImagePanel">
 			<field name="image" widget="image"/>
 		</panel>
-		<panel>
+		<panel name="productInfoPanel">
 			<field name="code"/>
 			<field name="name"/>
 		</panel>
-		<panel colSpan="12">
+		<panel colSpan="12" name="productPricePanel">
 			<field name="unitPriceUntaxed"/>
 			<field name="productCategory" />
 		</panel>

@@ -6,44 +6,103 @@
 
 
 	<grid model="com.axelor.sale.db.SaleOrder" title="Sale order lines" name="sale-order-grid" canNew="true">
+		<toolbar>
+			<button onClick="action-sale-order-group-action-export-button" name="BtnExport" title="Export" />
+		</toolbar>	
 		<field name="saleOrderSeq"/>	
 		<field name="quotationDateT"/>	
-		<field name="confirmationDate"/>	
-		<field name="statusSelect"/>		
+		<field name="confirmationDateT"/>	
+		<field name="statusSelect" selection="product.category.select"/>		
 		<field name="inTaxTotal"/>	
-		<field name="customer"/>	
+		<field name="customer"/>
 	</grid>
+	<action-group name="action-sale-order-group-action-export-button">
+		<action name="action-sale-order-grid-validate"/>
+		<action name="action-sale-order-check-tamplet-sheet"/>
+	</action-group>
+	<action-validate name="action-sale-order-grid-validate">
+		<error message="Please select at least one line" if="__ids__ == null"/>
+	</action-validate>
+	<action-export name="action-sale-order-check-tamplet-sheet" download="true" output="SaleOrderLine.xml">
+		<export name="SaleOrderExport${__datetime__.toString().substring(0,19)}.xml" template="data-export/sale-order-export.txt" engine="groovy"/>
+	</action-export>
+	
 	<grid model="com.axelor.sale.db.SaleOrder" title="Sale order lines" name="quotation-sale-order-grid" canEdit="false" canNew="false">
 		<field name="saleOrderSeq"/>	
 		<field name="quotationDateT"/>
-		<field name="saleOrder.confirmationDate"/>
+		<field name="saleOrder.confirmationDateT"/>
 		<field name="statusSelect" domain="true" />
 		<field name="inTaxTotal"/>
 		<field name="customer"/>
 	</grid>
 	
 	
-	<form model="com.axelor.sale.db.SaleOrder" title="Sale Order" name="sale-order-form" width="large">
-		<panel>
+	<form model="com.axelor.sale.db.SaleOrder" title="Sale Order" name="sale-order-form" width="large" onNew="action-sale-sale-order-set-record" onSave="action-sale-sale-order-calculate-tax">
+		<panel name="saleOrderPanel" itemSpan="6">
 			<field name="statusSelect" selection="SaleOrderStatusSelect" widget="NavSelect" colSpan="12"/>
 			<field name="saleOrderSeq" readonly="true"/>
-			<field name="customer"></field>
+			<field name="customer"/>
 		
 			<panel-related field="saleOrderLineList" colSpan="12" grid-view="sale-order-line-grid" form-view="sale-order-line-form" readonlyIf="statusSelect == 'CONFIRMED'"/>
 		</panel>
-		<panel sidebar="true">
-			<button onClick="" name="finilizeQuotation" title="Finalize quotation" showIf="statusSelect == 'DRAFT'"/>
-			<button onClick="" name="confirmOrder" title="Confirm order" showIf="statusSelect == 'CONFIRMED'"/>
-			<button onClick="" name="cancleOrder" title="Cancel order" css="btn-danger" showIf="statusSelect !== 'CANCELLED'"/>
+		<panel sidebar="true" name="saleOrderSidePanel">
+			<button onClick="action-finalize-quotation-validate-sale-order-btn" name="finalizeQuotationBtn" title="Finalize quotation" showIf="statusSelect == 'DRAFT'"/>
+			<button onClick="action-confirm-order-validate-sale-order-btn" name="confirmOrderBtn" title="Confirm order" showIf="statusSelect == 'QUOTATION'"/>
+			<button onClick="action-cancel-order-validate-sale-order-btn" name="cancleOrderBtn" title="Cancel order" css="btn-danger" showIf="statusSelect !== 'CANCELLED'" prompt="Cancelling the order is definitive! Do you want to continue?"/>
 		</panel>
-		<panel sidebar="true" title="Dates" collapseIf="true" readonly="true">
+		<panel sidebar="true" title="Dates" collapseIf="true" readonly="true" name="saleOrderDatePanel">
 			<field name="quotationDateT"/>			
-			<field name="confirmationDate"/>
-			
+			<field name="confirmationDateT"/>
 		</panel>
-		<panel sidebar="true" title="Prices" collapseIf="true" readonly="true">
+		<panel sidebar="true" title="Prices" collapseIf="true" readonly="true" name="saleOrderPricePanel">
 			<field name="inTaxTotal"/>					
 		</panel>
 	</form>
+	
+	<action-record name="action-sale-sale-order-set-record" model="com.axelor.sale.db.SaleOrder">
+		<field name="statusSelect" expr="DRAFT"/>	
+	</action-record>
+	
+	<action-record name="action-sale-sale-order-calculate-tax" model="com.axelor.sale.db.SaleOrder">
+		<field name="inTaxTotal" expr="eval: saleOrderLineList.collect{it -> it.exTaxTotal * it.taxRate + it.exTaxTotal}.sum()"/>
+	</action-record>
+	
+	
+	<action-group name="action-finalize-quotation-validate-sale-order-btn">
+		<action name="action-finalize-quotation-validate-sale-order-form"/>
+		<action name="action-sale-sale-order-calculate-tax"/>
+		<action name="action-finalize-quotation-record-set"/>
+	</action-group>
+	
+			<action-validate name="action-finalize-quotation-validate-sale-order-form" model="com.axelor.sale.db.SaleOrder">
+				<error message="Please fill at least one sale order line." if="saleOrderLineList.size() == 0"/>
+				<error message="There is a detail line with 0 total price. Please correct it." if="eval: saleOrderLineList.any{it-> it.exTaxTotal==0}"/>
+			</action-validate>
+			<action-record name="action-finalize-quotation-record-set" model="com.axelor.sale.db.SaleOrder">
+				<field name="quotationDateT" expr="eval:__datetime__"/>
+				<field name="statusSelect" expr="QUOTATION"/>
+			</action-record>
+		
+	<action-group name="action-confirm-order-validate-sale-order-btn" model="com.axelor.sale.db.SaleOrder">
+		<action name="action-confirm-order-validate-sale-order-form"/>
+		<action name="action-sale-sale-order-calculate-tax"/>
+		<action name="action-confirm-order-record-set"/>
+	</action-group>
+			<action-validate name="action-confirm-order-validate-sale-order-form">
+					<error message="Please fill at least one sale order line." if="saleOrderLineList.size() == 0"/>
+					<error message="There is a detail line with 0 total price. Please correct it." if="eval: saleOrderLineList.any{it-> it.exTaxTotal==0}"/>
+			</action-validate>
+			<action-record name="action-confirm-order-record-set" model="com.axelor.sale.db.SaleOrder">
+					<field name="confirmationDateT" expr="eval:__datetime__"/>
+					<field name="statusSelect" expr="CONFIRMED"/>
+			</action-record>
+	
+	<action-group name="action-cancel-order-validate-sale-order-btn">
+		<action name="action-sale-sale-order-calculate-tax"/>
+		<action name="action-cancel-order-record-set"/>
+	</action-group>
+		<action-record name="action-cancel-order-record-set" model="com.axelor.sale.db.SaleOrder">
+			<field name="statusSelect" expr="CANCELLED"/>
+		</action-record>
 	
 </object-views>
