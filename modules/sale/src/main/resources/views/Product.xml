@@ -26,7 +26,7 @@
 		</panel>
 		<panel colSpan="12">
 			<field name="unitPriceUntaxed"/>
-			<field name="productCategoryList" />
+			<field name="productCategory" />
 		</panel>
 	</panel>
 </form>

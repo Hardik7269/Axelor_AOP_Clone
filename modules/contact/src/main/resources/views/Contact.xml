@@ -5,7 +5,7 @@
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
   
   
-  	<cards name="contact-card" model="com.axelor.contact.db.Contact" title="First name Last name">
+  	<cards name="contact-card" model="com.axelor.contact.db.Contact" title="Contacts">
 	
 		<field name="fullName"/>
 		<field name="image"/>
@@ -15,23 +15,21 @@
 		
 		<template>
 			<![CDATA[
-
-			
-			<div class="span4 card-image">
-                <strong>{{fullName}}</strong>
-                <br>
-                <img ngi-if="image" ng-src="{{ $image(null, 'image')}}">
-            </div>
-            
-            <div class="span8">
-                  <br>
-                  <i class="fa fa-phone"> </i> {{phone}}
-                  <br>
-                  <i class="fa fa-at"> </i> {{email}}
-                  <br>
-                 <i class="fa fa-envelope"> </i> {{address.fullName}}
-                  <br>
-            </div>
+				<div class="span4 card-image">
+				    <strong>{{fullName}}</strong>
+				    <br>
+				    <img ng-if="image" ng-src="{{ $image(null, 'image')}}">
+				</div>
+				
+				<div class="span8">
+				    <br>
+				    <i class="fa fa-phone" ng-if="phone"> </i> {{phone}}
+				    <br>
+				    <i class="fa fa-at" ng-if="email"> </i> {{email}}
+				    <br>
+				    <i class="fa fa-envelope" ng-if="address.fullName"> </i> {{address.fullName}}
+				    <br>
+				</div>
 			]]>
 		</template>
 	</cards>
@@ -45,7 +43,7 @@
         <field name="isSubjectToTaxes" />
         <field name="address" />
         <field name="Archived" />
-
+		
     </grid>
 	
 	<form model="com.axelor.contact.db.Contact" title="Contact" name="contact-form" width="large">
@@ -57,7 +55,7 @@
 				<field name="firstName"/>
 				<field name="lastName"/>
 				<field name="title"/>
-				<field name="birthDate" />
+				<field name="birthDate"/>
 				
 			</panel>
 		</panel>
@@ -81,5 +79,6 @@
 		</panel-mail>
 
 	</form>
+	
 
 </object-views>

@@ -18,8 +18,7 @@
 				return "["+code+"]"+name;
 		]]>
 		</string>
-		<integer name="iconSelect" title="Icon"
-			selection="product.category.select">
+		<integer name="iconSelect" title="Icon" selection="product.category.select"/>
 
 
 	</entity>

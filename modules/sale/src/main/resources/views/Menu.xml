@@ -41,7 +41,7 @@
 						<view type="form" name="product-form" />
 					</action-view>
 					
-       <menuitem name="sale-root-data" title="Data" icon="fa-list" parent="sale-root" order=""/>
+       <menuitem name="sale-root-data" title="Data" icon="fa-list" parent="sale-root" order="5"/>
                <menuitem title="Sale order lines" name="sale-root-data-sale-order-line" parent="sale-root-data" action="action.sale.data.view.sale.order.line"/>
                		<action-view name="action.sale.data.view.sale.order.line" title="Sale order lines" model="com.axelor.sale.db.SaleOrderLine">
 						<view type="grid" name="sale-order-line-grid-form-menu" />

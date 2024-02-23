@@ -27,14 +27,14 @@
 	    <column name="name" type="string"/>
 	
 	    <node model="com.axelor.sale.db.ProductCategory">
-	      <field name="iconSelect" as="iconSelect"/>
-	      <field name="name" as="name"/>
-	      <field name="code" as="code"/>
+	      <field name="iconSelect"/>
+	      <field name="name" />
+	      <field name="code"/>
 	    </node>
 	
-	    <node model="com.axelor.sale.db.Product" draggable="true" parent="productCategoryList">
-	      <field name="name" as="name"/>
-	      <field name="code" as="code"/>
+	    <node model="com.axelor.sale.db.Product" draggable="true" parent="productCategory">
+	      <field name="name"/>
+	      <field name="code"/>
 	    </node>
   	</tree>
   	
