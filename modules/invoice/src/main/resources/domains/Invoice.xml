@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+	<module package="com.axelor.invoice.db" name="invoice" />
+	<entity name="Invoice">
+		<string name="invoiceSeq" title="Sequence" readonly="true" namecolumn="true" sequence="invoiceSeqSeq"/>
+		<datetime name="invoiceDateT" title="Invoice date"/>
+		<integer name="statusSelect" title="Status" readonly="true" required="true"/>
+		<decimal name="exTaxTotal" title="Total price without tax"/>
+		<decimal name="inTaxTotal" title="Total price with tax"/>
+		<one-to-many ref="com.axelor.invoice.db.InvoiceLine" name="invoiceLineList" title="Invoice lines"/>
+		<many-to-one ref="com.axelor.contact.db.Contact" name="customer" title="Customer"/>
+		<many-to-one ref="com.axelor.sale.db.SaleOrder" name="saleOrder"/>
+		<extra-code >
+		<![CDATA[
+			public static final int STATUS_DRAFT = 0;
+			public static final int STATUS_VALIDATED = 1;
+			public static final int STATUS_CANCELLED = 2;
+		]]>
+		</extra-code>
+	</entity>
+	
+	<sequence name="invoiceSeqSeq" initial="1" increment="1" padding="5" prefix="INV"/>
+
+</domain-models>
