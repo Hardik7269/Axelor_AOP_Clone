@@ -15,13 +15,14 @@
 	<form model="com.axelor.sale.db.SaleOrderLine" title="Sale order line" name="sale-order-line-form" width="large" onNew="action-sale-order-line-set-tax-rate-on-new" onLoad="action-sale-order-line-set-tax-rete-on-load">
 		<panel title="mainPanel" name="saleOrderLinePanel" itemSpan="6">
 			<help css="alert-info" showIf="product == null">
+			
 			Please fill the product first
 			</help>	
 			 
 			<field name="product"  domain="self.unitPriceUntaxed > '0'" onChange="action-sale-product-group"/>
 			<field name="description"  readonlyIf="product == null"/>
 			
-			<field name="unitPriceUntaxed" colSpan="5" readonlyIf="product == null" onChange="action-sale-order-line-set-ex-tax-total"/>
+			<field name="unitPriceUntaxed" readonlyIf="product == null" onChange="action-sale-order-line-set-ex-tax-total"/>
 			<field name="quantity" onChange="action-sale-order-line-set-ex-tax-total"/>	
 			
 			<field name="taxRate"/>
@@ -69,19 +70,4 @@
 		<attribute for="taxRate" name="hidden" expr="eval: !__parent__?.customer?.isSubjectToTaxes" />
 	</action-attrs>
 
-	<action-group name="action-sale-product-group">
-		<action name="action-sale-product-set-on-change-record"/>
-		<action name="action-sale-order-line-set-ex-tax-total"/>
-	</action-group>
-	
-	<action-record name="action-sale-product-set-on-change-record" model="com.axelor.sale.db.Product">
-		<field name="description" expr="eval: product.name" if="eval: product != null"/>
-        <field name="unitPriceUntaxed" expr="eval: product.unitPriceUntaxed " if="eval: product != null"/>       
-	</action-record>
-	
-	
-	<action-record name="action-sale-order-line-set-ex-tax-total" model="com.axelor.sale.db.Product">
-		<field name="exTaxTotal" expr="eval: quantity * unitPriceUntaxed"/>
-	</action-record>
-	
 </object-views>

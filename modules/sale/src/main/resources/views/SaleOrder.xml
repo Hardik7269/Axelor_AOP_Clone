@@ -30,8 +30,8 @@
 	<grid model="com.axelor.sale.db.SaleOrder" title="Sale order lines" name="quotation-sale-order-grid" canEdit="false" canNew="false">
 		<field name="saleOrderSeq"/>	
 		<field name="quotationDateT"/>
-		<field name="saleOrder.confirmationDateT"/>
-		<field name="statusSelect" domain="true" />
+		<field name="confirmationDateT"/>
+		<field name="statusSelect"/>
 		<field name="inTaxTotal"/>
 		<field name="customer"/>
 	</grid>

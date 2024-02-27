@@ -38,6 +38,7 @@ allprojects {
 
 dependencies {
   // add module dependencies
-  api project(":modules:contact")
-  api project(":modules:sale")
+  implementation project(":modules:contact")
+  implementation project(":modules:sale")
+  implementation project(":modules:invoice")
 }

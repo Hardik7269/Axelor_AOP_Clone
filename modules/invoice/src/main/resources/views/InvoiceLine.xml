@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+  
+  <grid model="com.axelor.invoice.db.InvoiceLine" title="Invoices lines" name="invoice-line-grid">
+  	<field name="description"/>
+  	<field name="quantity"/>
+  	<field name="exTaxTotal"/>
+  	<field name="inTaxTotal"/>
+  	<field name="taxRate"/>
+  	<field name="unitPriceUntaxed"/>
+  	<field name="product"/>
+  </grid>
+  
+  <form model="com.axelor.invoice.db.InvoiceLine" title="Invoice line" name="invoice-line-form-from-grid" onNew="action-invoice-line-method-set-tax-rate">
+	<panel title="Overview" colSpan="6" name="invoiceInvoiceLInePanel">
+		<field name="product" onChange="action-invoice-line-method-multiple-changes"/>
+		<field name="description"/>
+		
+		<field name="unitPriceUntaxed" onChange="action-invoice-line-method-multiple-changes"/>
+		<field name="quantity" onChange="action-invoice-line-method-multiple-changes"/>
+		
+		<field name="taxRate" onChange="action-invoice-line-form-on-change-total"/>
+		<field name="inTaxTotal"/>
+	</panel>
+  </form>
+  
+  <form model="com.axelor.invoice.db.InvoiceLine" title="Invoice line" name="invoice-line-form" readonlyIf="true" >
+	<panel title="Overview" colSpan="6" name="invoiceLinePanel">
+		<field name="product"/>
+		<field name="description"/>
+		
+		<field name="unitPriceUntaxed"/>
+		<field name="quantity"/>
+		
+		<field name="taxRate"/>
+		<field name="inTaxTotal"/>
+	</panel>
+  </form>
+  
+  <action-group name="action-invoice-line-method-multiple-changes">
+  	<action name="action-invoice-line-form-on-change-discription"/>
+  	<action name="action-invoice-line-form-on-change-unit-price-untax"/>
+  	<action name="action-invoice-line-form-on-change-total"/>
+  </action-group>
+  
+  <action-method name="action-invoice-line-method-set-tax-rate">
+  	<call class="com.axelor.invoice.web.InvoiceLineController" method="setTaxRate"/>
+  </action-method>
+  
+ 
+   <action-method name="action-invoice-line-form-on-change-discription">
+  	<call class="com.axelor.invoice.web.InvoiceLineController" method="setDiscription"/>
+  </action-method>
+  <action-method name="action-invoice-line-form-on-change-unit-price-untax">
+  	<call class="com.axelor.invoice.web.InvoiceLineController" method="setUnitPriceUntaxed"/>
+  </action-method>
+  <action-method name="action-invoice-line-form-on-change-total">
+  	<call class="com.axelor.invoice.web.InvoiceLineController" method="setExTaxTotal"/>
+  </action-method>
+			
+</object-views>

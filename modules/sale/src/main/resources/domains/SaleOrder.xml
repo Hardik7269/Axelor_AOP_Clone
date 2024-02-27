@@ -29,7 +29,6 @@
 		<one-to-many ref="com.axelor.sale.db.SaleOrderLine" name="saleOrderLineList" title="Sale order lines" mappedBy="saleOrder"/>
 	</entity>
 	
-	
 
 
 </domain-models>
