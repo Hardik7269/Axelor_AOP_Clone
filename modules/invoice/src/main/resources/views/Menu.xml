@@ -16,5 +16,6 @@
 				<action-view name="action.invoice.data.view.invoice.line" title="Invoice lines" model="com.axelor.invoice.db.InvoiceLine">
 					<view type="grid" name="invoice-line-grid"/>
 					<view type="form" name="invoice-line-form"/>
+					<context name="invoiceLine" expr="true"/>
 				</action-view>
 </object-views>
