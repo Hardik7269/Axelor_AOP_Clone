@@ -43,6 +43,7 @@ public class InvoiceLineController {
 	    BigDecimal calculateExTax = invoiceLine.getQuantity().multiply(unitPriceUntaxed);
 	    
 	    response.setValue("exTaxTotal", calculateExTax);
+	    
 	    setInTaxTotal(request, response, calculateExTax);
 	}
 	public void setInTaxTotal(ActionRequest request , ActionResponse response , BigDecimal exTaxTotal) {
