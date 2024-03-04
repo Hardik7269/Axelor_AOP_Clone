@@ -12,7 +12,7 @@
 		<field name="saleOrderSeq"/>	
 		<field name="quotationDateT"/>	
 		<field name="confirmationDateT"/>	
-		<field name="statusSelect"/>		
+		<field name="statusSelect" selection="product.category.select"/>		
 		<field name="inTaxTotal"/>	
 		<field name="customer"/>
 	</grid>

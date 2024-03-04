@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+ 
+    
+    <dashboard name="dashboard.home" title="Home Dashboards">
+        <dashlet action="action.dashboard.show.events"  colSpan="12"/>
+        <dashlet action="chart:chart.dashboard.show.last.month.sales.product.category"/>
+        <dashlet action="chart:chart.dashboard.show.turn.over.customer"/>
+        <dashlet action="chart:chart.dashboard.rpc.show.inovoice.per.3.month"/>
+    </dashboard>
+    
+    
+    <grid model="com.axelor.contact.db.Event" title="Upcomming events" name="event-dashboard-grid" orderBy="startDateT">
+        <hilite color="green" if="typeSelect==2"/>
+        <field name="title"/>
+        <field name="typeSelect"/>
+        <field name="startDateT"/>
+        <field name="endDateT"/>
+        <field name="statusSelect" widget="SingleSelect"/>
+        <field name="plannedFor"/>
+    </grid>
+ 
+    <action-view name="action.dashboard.show.events" title="Upcoming events"  model="com.axelor.contact.db.Event">
+        <view type="grid" name="event-dashboard-grid"/>
+    </action-view>
+
+    
+    
+</object-views>

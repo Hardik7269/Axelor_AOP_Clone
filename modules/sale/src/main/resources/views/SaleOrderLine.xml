@@ -70,4 +70,19 @@
 		<attribute for="taxRate" name="hidden" expr="eval: !__parent__?.customer?.isSubjectToTaxes" />
 	</action-attrs>
 
+	<action-group name="action-sale-product-group">
+		<action name="action-sale-product-set-on-change-record"/>
+		<action name="action-sale-order-line-set-ex-tax-total"/>
+	</action-group>
+	
+	<action-record name="action-sale-product-set-on-change-record" model="com.axelor.sale.db.Product">
+		<field name="description" expr="eval: product.name" if="eval: product != null"/>
+        <field name="unitPriceUntaxed" expr="eval: product.unitPriceUntaxed " if="eval: product != null"/>       
+	</action-record>
+	
+	
+	<action-record name="action-sale-order-line-set-ex-tax-total" model="com.axelor.sale.db.Product">
+		<field name="exTaxTotal" expr="eval: quantity * unitPriceUntaxed"/>
+	</action-record>
+	
 </object-views>
