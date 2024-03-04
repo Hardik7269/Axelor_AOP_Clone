@@ -13,7 +13,7 @@
 	</grid>
 
 	<form model="com.axelor.sale.db.ProductCategory" title="Product category" name="product-category-form" width="large">
-		<panel title="mainPanel" name="productCategoryPanel">	
+		<panel title="mainPanel">	
 			<field name="iconSelect" colSpan="6" widget="image-select" />
 			<field name="name" title="Name" colSpan="6"/>
 			<field name="code"/>
@@ -31,7 +31,7 @@
 	      <field name="name" />
 	      <field name="code"/>
 	    </node>
-	    
+	
 	    <node model="com.axelor.sale.db.Product" draggable="true" parent="productCategory" onClick="action-sale-product-category-tree-open-product-record">
 	      <field name="name"/>
 	      <field name="code"/>
@@ -39,7 +39,7 @@
   	</tree>
   	
   	<action-view name="action-sale-product-category-tree-open-product-record" title="Product" model="com.axelor.sale.db.Product">
-  		<view type="form" name="product-form"/>
+  		<view type="grid" name="product-grid"/>
   		<view-param name="popup" value="true"/>
   		
   		<domain>self.id= :id</domain>

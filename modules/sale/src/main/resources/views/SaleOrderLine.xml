@@ -13,23 +13,24 @@
 	</grid>
 	
 	<form model="com.axelor.sale.db.SaleOrderLine" title="Sale order line" name="sale-order-line-form" width="large" onNew="action-sale-order-line-set-tax-rate-on-new" onLoad="action-sale-order-line-set-tax-rete-on-load">
-		<panel title="mainPanel" name="saleOrderLinePanel">
+		<panel title="mainPanel" >
 			<help css="alert-info" showIf="product == null">
+			
 			Please fill the product first
 			</help>	
-			 
-			<field name="product"  domain="self.unitPriceUntaxed > '0'" onChange="action-sale-product-group"/>
-			<field name="description"  readonlyIf="product == null"/>
 			
-			<field name="unitPriceUntaxed" colSpan="5" readonlyIf="product == null" onChange="action-sale-order-line-set-ex-tax-total"/>
-			<field name="quantity" onChange="action-sale-order-line-set-ex-tax-total"/>	
+			<field name="product" colSpan="6"/>
+			<field name="description" colSpan="6" readonlyIf="product == null"/>
+			
+			<field name="unitPriceUntaxed" colSpan="6" readonlyIf="product == null" domain="self.unitPriceUntaxed > '0'"/>
+			<field name="quantity"/>	
 			
 			<field name="taxRate"/>
 			<field name="exTaxTotal" readonly="true"/>
 		</panel>
 	</form>
 
-	<grid model="com.axelor.sale.db.SaleOrderLine" name="sale-order-line-grid-form-menu" title="Sale order lines" groupBy="product.productCategory" canNew="false" canEdit="false" canDelete="false" canArchive="false" edit-icon="false" editable="false">
+	<grid model="com.axelor.sale.db.SaleOrderLine" name="sale-order-line-grid-form-menu" editable="false" edit-icon="false" title="Sale order lines" groupBy="product.productCategoryList">
 		<field name="product"/>
 		<field name="description"/>
 		<field name="unitPriceUntaxed"/>
@@ -39,20 +40,22 @@
 		<field name="saleOrder"/>
 		<field name="saleOrder.statusSelect"/>
 		<field name="saleOrder.customer"/>
-		<field name="product.productCategory"/>
+		<field name="product.productCategoryList"/>
 	</grid>
 	
 	<form model="com.axelor.sale.db.SaleOrderLine" title="Sale order line" name="sale-order-line-form-form-menu" canEdit="false" canNew="false" readonlyIf="true">
-		<panel title="mainPanel" name="saleOrderLineMainPanel" >
+		<panel title="mainPanel" >
 		
 			<field name="product"/>
 			<field name="description"/>
 			
-			<field name="unitPriceUntaxed"/>
-			<field name="quantity"/>
+			<field name="unitPriceUntaxed" colSpan="6">
+				
+			</field>
+			<field name="quantity" colSpan="6"/>
 			
-			<field name="taxRate" />
-			<field name="exTaxTotal"/>
+			<field name="taxRate" colSpan="6"/>
+			<field name="exTaxTotal" colSpan="6"/>
 		</panel>
 		<panel sidebar="true">
 			<field name="saleOrder"/>
@@ -60,28 +63,5 @@
 			<field name="product"/>
 		</panel>
 	</form>
-	
-	<action-attrs name="action-sale-order-line-set-tax-rate-on-new" model="com.axelor.sale.db.SaleOrderLine">
-		 <attribute name="value:set" for="taxRate" expr="0.2" if="id == null"/>
-        <attribute name="hidden" for="taxRate" expr="eval: !__parent__?.customer?.isSubjectToTaxes"/> 
-	</action-attrs>
-	<action-attrs name="action-sale-order-line-set-tax-rete-on-load" model="com.axelor.sale.db.SaleOrderLine">
-		<attribute for="taxRate" name="hidden" expr="eval: !__parent__?.customer?.isSubjectToTaxes" />
-	</action-attrs>
 
-	<action-group name="action-sale-product-group">
-		<action name="action-sale-product-set-on-change-record"/>
-		<action name="action-sale-order-line-set-ex-tax-total"/>
-	</action-group>
-	
-	<action-record name="action-sale-product-set-on-change-record" model="com.axelor.sale.db.Product">
-		<field name="description" expr="eval: product.name" if="eval: product != null"/>
-        <field name="unitPriceUntaxed" expr="eval: product.unitPriceUntaxed " if="eval: product != null"/>       
-	</action-record>
-	
-	
-	<action-record name="action-sale-order-line-set-ex-tax-total" model="com.axelor.sale.db.Product">
-		<field name="exTaxTotal" expr="eval: quantity * unitPriceUntaxed"/>
-	</action-record>
-	
 </object-views>

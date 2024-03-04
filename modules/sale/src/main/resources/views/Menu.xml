@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
   
- <menuitem title="Sale" name="sale-root" icon="fa-line-chart" icon-background="yellow"/>
+ <menuitem title="Sale" name="sale-root" icon="fa-line-chart" icon-background="yellow" order="30"/>
      <menuitem title="All sale orders" name="sale-root-all-sale-order" parent="sale-root"  action="action.sale.view.all.sale.order" order="1"/>
      		<action-view name="action.sale.view.all.sale.order" title="SaleOrder" model="com.axelor.sale.db.SaleOrder">
 						<view type="grid" name="sale-order-grid" />

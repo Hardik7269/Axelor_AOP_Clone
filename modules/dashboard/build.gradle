@@ -1,0 +1,14 @@
+plugins {
+  id 'com.axelor.app'
+}
+
+axelor {
+  title "AOP Dashboard"
+  description "AOP TRAINING : Dashboard Module"
+}
+
+dependencies{
+	 api project(":modules:contact")
+	api project(":modules:sale")
+	implementation project(":modules:invoice")
+}

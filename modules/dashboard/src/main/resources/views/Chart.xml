@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+ 
+
+
+	<chart name="chart.dashboard.show.last.month.sales.product.category" title="Last month sales per product category">
+  		<dataset type="jpql">
+	        <![CDATA[
+				 SELECT pc.name AS category,
+		         (SELECT SUM(exTaxTotal) 
+		         FROM 
+		         	SaleOrderLine 
+		         WHERE 
+		         	product IN (SELECT id FROM Product WHERE productCategory = pc.id)) 
+		         AS amount
+		          FROM
+		            ProductCategory AS pc
+	        ]]>
+        </dataset>
+        <category key="category" type="number" title="Product Category" />
+        <series key="amount" type="bar" title="Total Sales (Excluding Tax)" />
+    </chart>
+    
+    <chart name="chart.dashboard.show.turn.over.customer" title="Turnover per customer" >
+    <search-fields>
+    	<field name="customer" target="com.axelor.contact.db.Contact" type="reference"/>
+    </search-fields>
+    	<dataset type="sql">
+    	 <![CDATA[
+    	 	SELECT
+			    SUM(sol.ex_tax_total) AS total_ex_tax,
+			    so.status_select,
+			CASE
+			        WHEN so.status_select = 'cancelled' THEN 'Proportion of turnover lost on canceled orders'
+			        WHEN so.status_select = 'confirmed' THEN 'Proportion of turnover earned on confirmed orders'
+			        WHEN so.status_select = 'quotation' THEN 'Proportion of forecast turnover on quotes'
+			        
+			    END AS status_selected 
+			FROM
+			    sale_sale_order_line AS sol
+			JOIN
+			    sale_sale_order AS so ON sol.sale_order = so.id
+			GROUP BY
+			    so.customer, so.status_select;
+    	 	
+    	 ]]>
+    	</dataset>
+    	<category key="status_selected" type="number" title="Status" />
+        <series key="total_ex_tax" type="pie"/>
+    </chart>
+
+	<chart name="chart.dashboard.rpc.show.inovoice.per.3.month" title="Amount invoiced per month over 3 months">
+		 <search-fields>
+    		<field name="invoiceDate" target="com.axelor.invoice.db.Invoice" type="date"/>
+    		<field name="customer" target="com.axelor.contact.db.Contact" type="reference"/>
+    	</search-fields>   	
+    	<dataset type="rpc">com.axelor.dashboard.web.HomeDashboardController:getHomeDashboardData</dataset>
+    	<category key="hhii"/>
+    	<series key="hello"/>
+	</chart>
+	
+    
+</object-views>
+
+
+
