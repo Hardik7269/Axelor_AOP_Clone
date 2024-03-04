@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+
+	<grid id="contact-grid.ext" model="com.axelor.contact.db.Contact" title="Contacts" name="contact-grid" extension="true">
+		<extend target="//field[@name='phone']">
+			<insert position="after">
+				<field name="account"/>
+			</insert>
+		</extend>		
+	</grid>
+	
+	<form id="contact-form.ext" model="com.axelor.contact.db.Contact" title="Contacts" name="contact-form" extension="true">
+		<extend target="//panel[@title='Other informations']/field[@name='isSubjectToTaxes']">
+			<attribute name="colSpan" value="4"/>
+		</extend>
+		<extend target="//panel[@title='Other informations']/field[@name='familyContactSet']">
+			<attribute name="colSpan" value="4"/>
+		</extend>
+		<extend target="//panel[@title='Other informations']/field[@name='familyContactSet']" >
+			<insert position="after">
+				<field name="account" colSpan="4"/>
+			</insert>
+		</extend>
+	</form>
+  	
+  </object-views>

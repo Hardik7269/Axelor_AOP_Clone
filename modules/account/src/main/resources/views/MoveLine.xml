@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+  
+	<grid model="com.axelor.account.db.MoveLine" title="Move Line" name="move-line-grid" canNew="false" canEdit="false">
+		<field name="refrence"/>
+		<field name="debit"/>
+		<field name="credit"/>
+		<field name="move"/>
+		<field name="account"/>		
+	</grid>
+	
+	<form model="com.axelor.account.db.MoveLine" title="Move line" name="move-line-form" onSave="action-move-line-set-refrences">
+		<panel name="moveLinePanel" title="Overview">
+			<field name="refrence"/>
+			<field name="account"/>
+			<field name="debit"/>
+			<field name="credit"/>
+		</panel>
+	</form>
+	
+  </object-views>

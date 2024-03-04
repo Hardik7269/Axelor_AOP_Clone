@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+  
+	<grid model="com.axelor.account.db.Move" title="Move" name="move-grid">
+		<field name="refrence"/>
+		<field name="operationDate"/>
+		<field name="invoice"/>
+	</grid>
+	<form model="com.axelor.account.db.Move" title="Move" name="move-form" onSave="action-move-set-refrences">
+		<panel name="movePanel" title="Overview">	
+			<field name="refrence"/>
+			<field name="invoice"/>
+			<panel-related field="moveLineList" form-view="move-line-form" grid-view="move-line-grid" colSpan="12"/>
+		</panel>
+		<panel sidebar="true" title="Dates">
+			<field name="operationDate"/>
+		</panel>
+	</form>
+
+	<action-method name="action-move-set-refrences">
+		<call class="com.axelor.account.web.MoveController" method="setRefrence"/>
+	</action-method>
+
+  </object-views>

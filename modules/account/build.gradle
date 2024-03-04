@@ -1,0 +1,11 @@
+plugins {
+  id 'com.axelor.app'
+}
+
+axelor {
+  title "AOP Accounts"
+  description "AOP TRAINING : Account Module"
+}
+dependencies{
+	api project(":modules:invoice")
+}

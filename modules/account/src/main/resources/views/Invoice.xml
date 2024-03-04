@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+  
+  
+  <form model="com.axelor.invoice.db.Invoice" title="Invoice" name="invoice-form" extension="true" id="account-invoice-from.ext">
+  	<extend target="//panel[@title='Prices']">
+  		<insert position="after">
+  			 <panel-mail>
+		     	<mail-messages limit="20"/>
+		      	<mail-followers />
+    		</panel-mail>
+  		</insert>
+  	</extend>
+  </form>
+  
+  <action-method name="action-account-invoice-generate-move-from-invoice">
+  	<call class="com.axelor.account.web.InvoiceAccountController" method="generateMoveFromInvoice"/>
+  </action-method>
+  
+</object-views>
