@@ -61,6 +61,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 				return;
 			}
 		}
+		//we might need an repo invoice here
 		Invoice newInvoice = generateNewInvoice(invoiceList.get(0).getCustomer());
 		for(Invoice inv : invoiceList) {
 			inv.setArchived(true);

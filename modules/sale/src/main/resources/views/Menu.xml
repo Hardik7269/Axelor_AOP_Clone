@@ -47,7 +47,6 @@
 						<view type="grid" name="sale-order-line-grid-form-menu" />
 						<view type="form" name="sale-order-line-form-form-menu"/>
 						<view-param name="search-filters" value="searchFilter"/>
-						
 					</action-view>
 					
 					<action-view name="action.sale.data.view.sale.order.line.contact" title="Sale order lines" model="com.axelor.sale.db.SaleOrderLine">

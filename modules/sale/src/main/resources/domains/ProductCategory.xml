@@ -7,11 +7,11 @@
 	<module package="com.axelor.sale.db" name="sale" />
 	<entity name="ProductCategory">
 	
-	<string name="name" title="Name" required="true" unique="true"></string>
-	<string name="code" title="Code" required="true" unique="true"></string>
+	<string name="name" title="Name" required="true" unique="true"/>
+	<string name="code" title="Code" required="true" unique="true"/>
 	<string name="fullName" title="Full name" namecolumn="true" >
 		<![CDATA[
-				if(name == null && code == null){
+				if(name == null || code == null){
 					return  "";
 				}
 				return "["+code+"]"+name;

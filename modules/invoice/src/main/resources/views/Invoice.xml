@@ -5,11 +5,15 @@
   https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
   
   <grid model="com.axelor.invoice.db.Invoice" title="Invoices" name="invoice-grid">
+    <toolbar>
+  		<button onClick="action-invoice-method-cancle-btn" name="cancelInovicesBtn" title="Cancel inovices"/>
+  		<button onClick="action-invoice-merge-btn-popup" name="mergeInvoiceBtn" title="Merge"/>
+  	</toolbar>
   	<field name="invoiceSeq"/>
   	<field name="invoiceDateT"/>
   	<field name="exTaxTotal"/>
   	<field name="inTaxTotal"/>
-  	<field name="statusSelect"/>
+  	<field name="statusSelect" selection="invoice.status.select"/>
   	<field name="customer"/>
   </grid>
   
@@ -45,6 +49,7 @@
 	  	<action name="action-invoice-method-cancel-alert"/>
 	 	<action name="action-invoice-method-set-status-cancel"/>
   </action-group>
+  
  
   <action-method name="action-invoice-method-set-invoice-date">
   	<call class="com.axelor.invoice.web.InvoiceController" method="setInvoiceDateTime"/>

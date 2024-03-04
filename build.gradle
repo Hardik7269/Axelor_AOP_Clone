@@ -42,4 +42,5 @@ dependencies {
   implementation project(":modules:sale")
   implementation project(":modules:invoice")
   implementation project(":modules:dashboard")
+  implementation project(":modules:account")
 }
