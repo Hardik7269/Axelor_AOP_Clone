@@ -41,7 +41,6 @@ public class InvoiceController {
 		        e.printStackTrace();
 		    }
 		}
-
 		
 		public void validateRecord(ActionRequest request, ActionResponse response) {
 			Context context = request.getContext();

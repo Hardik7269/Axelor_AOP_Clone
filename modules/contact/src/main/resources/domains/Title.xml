@@ -7,8 +7,8 @@
 	<module package="com.axelor.contact.db" name="contact" />
 	<entity name="Title">
 	
-		<string name="name" required="true" unique="true" min="2"  title="Name"></string>
-		<string name="code" required="true" unique="true" min="2" title="Code" namecolumn="true"></string>
+		<string name="name" required="true" unique="true" min="2"  title="Name" translatable="true"></string>
+		<string name="code" required="true" unique="true" min="2" title="Code" namecolumn="true" translatable="true"></string>
 		
 	</entity>
 
