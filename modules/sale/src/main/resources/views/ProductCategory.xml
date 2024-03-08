@@ -31,7 +31,7 @@
 	      <field name="name" />
 	      <field name="code"/>
 	    </node>
-	
+	    
 	    <node model="com.axelor.sale.db.Product" draggable="true" parent="productCategory" onClick="action-sale-product-category-tree-open-product-record">
 	      <field name="name"/>
 	      <field name="code"/>

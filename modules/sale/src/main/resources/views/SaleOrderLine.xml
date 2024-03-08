@@ -15,7 +15,6 @@
 	<form model="com.axelor.sale.db.SaleOrderLine" title="Sale order line" name="sale-order-line-form" width="large" onNew="action-sale-order-line-set-tax-rate-on-new" onLoad="action-sale-order-line-set-tax-rete-on-load">
 		<panel title="mainPanel" name="saleOrderLinePanel" itemSpan="6">
 			<help css="alert-info" showIf="product == null">
-			
 			Please fill the product first
 			</help>	
 			 
