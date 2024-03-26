@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<csv-inputs xmlns="http://axelor.com/xml/ns/data-import"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://axelor.com/xml/ns/data-import
+    https://axelor.com/xml/ns/data-import/data-import_6.0.xsd">
+    
+    <input file="contact_country.csv" type="com.axelor.contact.db.Country" separator=";" search="self.code = :code" />
+    <input file="contact_address.csv" type="com.axelor.contact.db.Address" separator=";" search="self.importId = :Ref">
+        <bind to="importId" column="Ref"/>
+        <bind to="numberAndStreet"/>
+        <bind to="zip"/>
+        <bind to="city"/>
+        <bind to="country" column="country_code" search="self.code=:country_code" update="true"/>
+        <bind to="fullName" eval='"${numberAndStreet} " +" "+ "${zip} " +" "+ "${city}"'/>
+    </input>
+    <input file="contact_title.csv" type="com.axelor.contact.db.Title" separator=";" search="self.code = :code" />
+    
+    <input file="contact_contact.csv" type="com.axelor.contact.db.Contact" separator=";">
+       <bind to="title" search="self.code= :title" column="title" update="true"/>
+        <bind to="firstName" column="firstName"/>
+        <bind to="lastName" column="lastName"/>
+        <bind to="fullName" eval="${title.Name}+' '+${firstName}+' '+${lastName}"></bind>
+        <bind to="birthDate" column="birthDate" adapter="LocalDate"></bind>
+        <bind to="email" column="email"></bind>
+        <bind to="phone" column="phone"></bind>
+        <bind to="isSubjectToTaxes" column="isSubjectToTaxes"></bind>
+        <bind to="address" search="self.importId= :address_importId" update="true"></bind>
+    </input>
+    
+</csv-inputs>
