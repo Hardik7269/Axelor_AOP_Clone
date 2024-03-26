@@ -1,0 +1,5 @@
+"canCreate";"canRead";"canExport";"canRemove";"canWrite";"name";"object";"roles";"conditionValue";"conditionParam"
+"true";"true";"true";"true";"true";"perm.contact.rwcde";"com.axelor.contact.db.Contact";"CRM";"";""
+"true";"true";"true";"true";"true";"perm.address.rwcde";"com.axelor.contact.db.Address";"CRM";"";""
+"false";"true";"true";"false";"false";"perm.sale.re";"com.axelor.sale.db.SaleOrderLine";"CRM";"";""
+"false";"true";"false";"false";"true";"perm.user.self.rw";"com.axelor.auth.db.User";"CRM";"self.id = ?";"__user__.id"

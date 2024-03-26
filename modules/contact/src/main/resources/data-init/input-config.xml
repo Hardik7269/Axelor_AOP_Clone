@@ -26,4 +26,46 @@
         <bind to="isSubjectToTaxes" column="isSubjectToTaxes"></bind>
         <bind to="address" search="self.importId= :address_importId" update="true"></bind>
     </input>
+    
+    <input file="auth_permission.csv" type="com.axelor.auth.db.Permission" separator=";" search="self.name = :name">
+    	<bind to="canCreate" column="canCreate"/>
+    	<bind to="canRead" column="canRead" />
+    	<bind to="canExport" column="canExport" />
+    	<bind to="canRemove" column="canRemove" />
+    	<bind to="canWrite" column="canWrite" />
+    	<bind to="name" column="name" />
+    	<bind to="object" column="object" />
+    	<bind to="roles" column="roles" />
+    	<bind to="conditionValue" column="conditionValue" />
+    	<bind to="conditionParam" column="conditionParam" />
+    </input>
+    
+    <input file="meta_permission.csv" type="com.axelor.meta.db.MetaPermission" separator=";">
+    	<bind to="name" column="name"/>
+    	<bind to="object" column="object"/>
+    </input>
+    
+   <input file="meta_permission_rule.csv" type="com.axelor.meta.db.MetaPermissionRule" separator=";">
+   		<bind to="canRead" column="canRead"/>
+    	<bind to="canExport" column="canExport"/>
+    	<bind to="canWrite" column="canWrite"/>
+    	<bind to="field" column="field"/>
+  		<bind to="metaPermission" column="metaPermission" search="self.name = : metaPermission"/>
+  </input>
+    <input file="auth_role.csv" type="com.axelor.auth.db.Role" separator=";" search="self.name = :name">
+    	<bind to="description" column="description"/>
+    	<bind to="name" column="name"/>
+    	<bind to="menus" column="menus"  search="self.name in :menus" eval="menus.split('|') as List"/>
+    	<bind to="permissions" column="permissions"  search="self.name in :permissions"  eval="permissions.split('|') as List"/>
+        <bind to="metaPermissions" column="metaPermissions" search="self.name in :metaPermissions"/>
+    </input>
+    
+    <input file="auth_user.csv" type="com.axelor.auth.db.User" separator=";">
+    	<bind to="code" column="code"/>
+    	<bind to="email" column="email"/>
+    	<bind to="name" column="name"/>
+    	<bind to="password" column="password"/>
+    	<bind to="roles" column="roles" search="self.name=:roles"/>
+    </input>
+    
 </csv-inputs>
