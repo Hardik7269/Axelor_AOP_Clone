@@ -10,14 +10,14 @@
 		<string name="zip" required="true" />
 		<string name="city" required="true" />
 		<many-to-one ref="com.axelor.contact.db.Country" name="country"/>
-		<string name="fullName" namecolumn="true" search="zip,numberAndStreet,city">
-			<![CDATA[
-			if(zip == null || numberAndStreet == null || city == null ){
-				return "";
-			}
-		return "zip: " + zip + " Number & Street: " + numberAndStreet + " City: " + city;
-			]]>
-		</string>
+		<string name="fullName" namecolumn="true" search="zip,numberAndStreet,city" formula="true">
+            <![CDATA[
+            CASE
+                WHEN zip IS NULL OR number_and_street IS NULL OR city IS NULL THEN ''
+                ELSE 'zip: ' || zip || ' Number & Street: ' || number_and_street || ' City: ' || city
+            END
+            ]]>
+        </string>
 		
 		
 	</entity>

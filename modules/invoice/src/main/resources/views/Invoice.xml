@@ -26,7 +26,7 @@
   	</panel>
 	<panel sidebar="true" name="invoiceFormSidePanel">
 		<button onClick="action-invoice-validate-record" name="validateBtn" title="Validate" showIf="statusSelect == 0 "/>
-		<button onClick="action-invoice-ventilate-record" name="ventilateBtn" title="Ventilate" showIf="statusSelect == 1" />
+		<button onClick="action-invoice-group-ventilate-record" name="ventilateBtn" title="Ventilate" showIf="statusSelect == 1" />
 		<button onClick="action-invoice-method-multiple-cancel" name="cancleOrderBtn" css="btn-danger" title="Cancel" hideIf="statusSelect == 3 "/>
 	</panel >
 	<panel title="Dates" sidebar="true" collapseIf="true">
@@ -51,26 +51,30 @@
   </action-group>
   
  
-  <action-method name="action-invoice-method-set-invoice-date">
+  <action-method name="action-invoice-from-set-invoice-date">
   	<call class="com.axelor.invoice.web.InvoiceController" method="setInvoiceDateTime"/>
   </action-method>
   
-  <action-method name="action-invoice-method-calculate-tax-total">
+  <action-method name="action-invoice-form-calculate-tax-total">
   	<call class="com.axelor.invoice.web.InvoiceController" method="calculateTaxTotal"/>
   </action-method>
   
-  <action-method name="action-invoice-validate-record">
+  <action-method name="action-invoice-form-validate-record">
   	<call class="com.axelor.invoice.web.InvoiceController" method="validateRecord"/>
   </action-method>
+  <action-group name="action-invoice-group-ventilate-record">
+  	<action name="action-invoice-ventilate-record"/>
+  	<action name="action-account-invoice-generate-move-from-invoice"/>
+  </action-group>
   
-  <action-method name="action-invoice-ventilate-record">
+  <action-method name="action-invoice-form-ventilate-record">
   	<call class="com.axelor.invoice.web.InvoiceController" method="ventilateRecord"/>
   </action-method>
   
-   <action-method name="action-invoice-method-cancel-alert">
+   <action-method name="action-invoice-form-cancel-record">
   	<call class="com.axelor.invoice.web.InvoiceController" method="cancelBtn"/>
   </action-method>
-    <action-method name="action-invoice-method-set-status-cancel">
+    <action-method name="action-invoice-form-status-set-cancel">
   	<call class="com.axelor.invoice.web.InvoiceController" method="setSelectFun"/>
   </action-method>
   

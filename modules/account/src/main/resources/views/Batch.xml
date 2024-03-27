@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.0.xsd">
+  <grid model="com.axelor.account.db.Batch" title="Batches" name="batch-grid">
+      <field name="startDateT"/>
+      <field name="endDateT"/>
+      <field name="done"/>
+      <field name="anomaly"/>
+  </grid>
+  
+  <form model="com.axelor.account.db.Batch" title="Overview" name="batch-form">
+      <panel name="batchFormPanel" itemSpan="6">
+          <field name="startDateT"/>
+          <field name="endDateT"/>
+          <field name="done"/>
+          <field name="anomaly"/>
+      </panel>
+  </form>
+  </object-views>

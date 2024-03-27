@@ -3,6 +3,8 @@ package com.axelor.account.module;
 
 import com.axelor.account.db.repo.AccountAccountRepository;
 import com.axelor.account.db.repo.AccountRepository;
+import com.axelor.account.service.AccountingBatchService;
+import com.axelor.account.service.AccountingBatchServiceImpl;
 import com.axelor.account.service.InvoiceAccountService;
 import com.axelor.account.service.InvoiceAccountServiceImpl;
 import com.axelor.account.service.MoveService;
@@ -18,5 +20,6 @@ public class AccountModule extends AxelorModule{
 		bind(InvoiceAccountService.class).to(InvoiceAccountServiceImpl.class);
 		bind(AccountRepository.class).to(AccountAccountRepository.class);
 		bind(MoveService.class).to(MoveServiceImpl.class);
+		bind(AccountingBatchService.class).to(AccountingBatchServiceImpl.class);
 	}
 }

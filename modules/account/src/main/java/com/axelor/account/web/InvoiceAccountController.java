@@ -17,7 +17,6 @@ public class InvoiceAccountController {
 		Invoice invoice = context.asType(Invoice.class);
 		try {
 			Move getMove = Beans.get(InvoiceAccountService.class).generateMoveFromInvoice(invoice);
-			System.err.println(getMove);
 			response.setView(ActionView.define("Move").model(Move.class.getName()).add("form" , "move-form")
 					.context("_showRecord", getMove.getId()).map());
 			

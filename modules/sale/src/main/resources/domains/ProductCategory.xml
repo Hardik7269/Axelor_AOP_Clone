@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+<domain-models
+	xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
   https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
 
 	<module package="com.axelor.sale.db" name="sale" />
 	<entity name="ProductCategory">
-	
-	<string name="name" title="Name" required="true" unique="true"/>
-	<string name="code" title="Code" required="true" unique="true"/>
-	<string name="fullName" title="Full name" namecolumn="true" >
-		<![CDATA[
-				if(name == null || code == null){
-					return  "";
-				}
-				return "["+code+"]"+name;
-		]]>
-	</string>	
-		<integer name="iconSelect" title="Icon" selection="product.category.select">
-			
-		</integer>
+
+		<string name="name" title="Name" required="true" unique="true" />
+		<string name="code" title="Code" required="true" unique="true" />
+		<string name="fullName" title="Full name" namecolumn="true" formula="true">
+        <![CDATA[
+                    CASE 
+                    WHEN name IS NULL AND code IS NULL THEN ''
+                    ELSE '[' || code || ']' || name
+                    END 
+        ]]>
+        </string>
+		<integer name="iconSelect" title="Icon" selection="product.category.select"/>
+		
 		<extra-code >
 		<![CDATA[
 			public static final int ICON_PRESTATION = 0;

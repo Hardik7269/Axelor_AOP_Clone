@@ -1,0 +1,2 @@
+"description";"name";"menus";"permissions";"metaPermissions"
+"User managing contacts";"CRM"; "contact-root-conf.address|contact-root-conf|contact-root|contact-root-contacts|dashboard-root-home";"perm.contact.rwcde|perm.address.rwcde|perm.sale.re|perm.user.self.rw";"perm.contact.isSubjectToTaxes.re"

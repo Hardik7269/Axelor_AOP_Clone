@@ -8,14 +8,14 @@
 	<entity name="Product">
 		<string name="name" title="Name" required="true" unique="true"/>
 		<string name="code" title="Code" required="true" unique="true"/>
-		<string name="fullName" title="Full name" namecolumn="true" search="name,code">
-			<![CDATA[
-				if(name == null || code == null){
-					return  "";
-				}
-				return "["+code+"]"+name;
-			]]>	
-		</string>
+		<string name="fullName" title="Full name" namecolumn="true" search="name,code" formula="true">
+            <![CDATA[
+                    CASE 
+                    WHEN name IS NULL AND code IS NULL THEN ''
+                    ELSE '[' || code || ']' || name
+                    END
+            ]]>    
+        </string>
 		
 		<decimal name="unitPriceUntaxed" title="Unit Price untaxed" required="true" min="0"/>
 		<many-to-one ref="com.axelor.sale.db.ProductCategory" name="productCategory" title="Product Category" required="true"/>

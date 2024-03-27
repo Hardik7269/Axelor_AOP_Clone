@@ -12,16 +12,14 @@
 		
 		<string name="lastName" required="true" title="Last name"/>
 		<string name="firstName" required="true" title="First name"/>
-		<string name="fullName" namecolumn="true" search="firstName,lastName" title="Full name">
-    <![CDATA[
-    if (firstName == null && lastName == null) {
-        return "";
-    }
-    if (title == null) {
-        return firstName + " " + lastName;
-    }
-    return title.getCode() + " " + firstName + " " + lastName;
-    ]]></string>
+		<string name="fullName" namecolumn="true" search="firstName,lastName" title="Full name" formula="true">
+		    <![CDATA[
+		        CASE
+		            WHEN first_name IS NULL AND last_name IS NULL THEN ''
+		            WHEN title IS NULL THEN first_name || ' ' || last_name
+		            ELSE (SELECT contact_title.code FROM contact_title WHERE contact_title.id = title) || ' ' || first_name || ' ' || last_name
+		        END
+		    ]]></string>
     
 		<date name="birthDate" title="Date of birth"/>
 		<string name="email"  title="Email"/>

@@ -26,5 +26,4 @@
         <bind to="isSubjectToTaxes" column="isSubjectToTaxes"></bind>
         <bind to="address" search="self.importId= :address_importId" update="true"></bind>
     </input>
-    
 </csv-inputs>
