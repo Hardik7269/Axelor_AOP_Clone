@@ -51,15 +51,15 @@
   </action-group>
   
  
-  <action-method name="action-invoice-from-set-invoice-date">
+  <action-method name="action-invoice-method-set-invoice-date">
   	<call class="com.axelor.invoice.web.InvoiceController" method="setInvoiceDateTime"/>
   </action-method>
   
-  <action-method name="action-invoice-form-calculate-tax-total">
+  <action-method name="action-invoice-method-calculate-tax-total">
   	<call class="com.axelor.invoice.web.InvoiceController" method="calculateTaxTotal"/>
   </action-method>
   
-  <action-method name="action-invoice-form-validate-record">
+  <action-method name="action-invoice-validate-record">
   	<call class="com.axelor.invoice.web.InvoiceController" method="validateRecord"/>
   </action-method>
   <action-group name="action-invoice-group-ventilate-record">
@@ -67,14 +67,14 @@
   	<action name="action-account-invoice-generate-move-from-invoice"/>
   </action-group>
   
-  <action-method name="action-invoice-form-ventilate-record">
+  <action-method name="action-invoice-ventilate-record">
   	<call class="com.axelor.invoice.web.InvoiceController" method="ventilateRecord"/>
   </action-method>
   
-   <action-method name="action-invoice-form-cancel-record">
+   <action-method name="action-invoice-method-cancel-alert">
   	<call class="com.axelor.invoice.web.InvoiceController" method="cancelBtn"/>
   </action-method>
-    <action-method name="action-invoice-form-status-set-cancel">
+    <action-method name="action-invoice-method-set-status-cancel">
   	<call class="com.axelor.invoice.web.InvoiceController" method="setSelectFun"/>
   </action-method>
   

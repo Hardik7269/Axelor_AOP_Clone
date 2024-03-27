@@ -1,5 +1,6 @@
 package com.axelor.invoice.web;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,6 @@ public class InvoiceController {
 		        e.printStackTrace();
 		    }
 		}
-
 		
 		public void validateRecord(ActionRequest request, ActionResponse response) {
 			Context context = request.getContext();
@@ -62,6 +62,11 @@ public class InvoiceController {
 		}
 		
 		public void ventilateRecord(ActionRequest request, ActionResponse response) {
+			validationOfRecords(request , response);
+			response.setValue("statusSelect", 2);
+		}
+		
+		public void validationOfRecords(ActionRequest request, ActionResponse response) {
 			Context context = request.getContext();
 			Invoice invoice = context.asType(Invoice.class);
 			
