@@ -25,6 +25,12 @@
  					<view type="grid" name="account-grid"/>
  					<view type="form" name="account-form"/>
  				</action-view>
+ 			<menuitem title="Accounting batch" name="accounting-root-data-accounting-batch" parent="accounting-root-data" action="action.account.data.show.accounting.batch"/>
+ 				<action-view name="action.account.data.show.accounting.batch" title="Accounting batch" model="com.axelor.account.db.AccountingBatch">
+ 					<view type="grid" name="accounting-batch-grid"/>
+ 					<view type="form" name="accounting-batch-form"/>
+ 				</action-view>	
+ 			
  		<menuitem title="Teamwork" name="menu-team" id="hide-menu-team" hidden="true" />
     	<menuitem title="Documents" name="menu-dms" id="hide-menu-dms" hidden="true" />
   	

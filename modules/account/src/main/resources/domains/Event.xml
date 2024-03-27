@@ -3,10 +3,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
   https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
-  
-  <module package="com.axelor.sale.db" name="sale"/>
-  <entity name="Product">
-  	<many-to-one ref="com.axelor.account.db.Account" name="account"/>
+
+  <module package="com.axelor.contact.db" name="contact"/>
+  <entity name="Event">
+  	<long name="duration" title="Duration" readonly="true"/>
+   <entity-listener class="com.axelor.account.db.repo.AccountEventListner"/>
   </entity>
   
  </domain-models>

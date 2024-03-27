@@ -17,7 +17,6 @@ public class MoveServiceImpl implements MoveService {
 
 	@Inject
 	public MoveServiceImpl(MoveRepository moveRepository, MoveLineRepository moveLineRepository) {
-		super();
 		this.moveRepository = moveRepository;
 		this.moveLineRepository = moveLineRepository;
 	}

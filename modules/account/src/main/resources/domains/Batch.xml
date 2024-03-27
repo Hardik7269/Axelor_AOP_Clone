@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.0.xsd">
+  
+  <module package="com.axelor.account.db" name="account"/>
+  <entity name="Batch">
+      <datetime name="startDateT" title="Start Date" readonly="true" tz="true"/>
+      <datetime name="endDateT" title="End Date" readonly="true" tz="true"/>
+      <integer name="done" title="Sucess" min="0"/>
+      <integer name="anomaly" min="0" title="Anomaly"/>
+      <many-to-one ref="com.axelor.account.db.AccountingBatch" name="accountingBatch" title="Accounting batch"/>
+      <extra-code>
+          <![CDATA[
+              public static final int GENERATE_MOVE = 0;
+          ]]>
+      </extra-code>
+  </entity>
+  
+ </domain-models>
